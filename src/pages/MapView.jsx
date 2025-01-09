@@ -42,7 +42,7 @@ const MapView = () => {
   const point2 = useMemo(() => [parseFloat(lat1), parseFloat(lon1)], [lat1, lon1]);
 
   const linePoints = [point1, point2];
-  const [isSatellite, setIsSatellite] = useState(false);
+  const [isSatellite, setIsSatellite] = useState(true);
   const [distance, setDistance] = useState(0);
 
   // Calculate the distance between the two points when the component mounts or params change

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -16,12 +16,39 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow,
 });
 
+// Haversine formula to calculate the distance in kilometers
+const haversineDistance = (lat1, lon1, lat2, lon2) => {
+  const R = 6371; // Radius of the Earth in kilometers
+  const dLat = (lat2 - lat1) * (Math.PI / 180);
+  const dLon = (lon2 - lon1) * (Math.PI / 180);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * (Math.PI / 180)) *
+      Math.cos(lat2 * (Math.PI / 180)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = R * c; // in kilometers
+  return distance;
+};
+
 const MapView = () => {
   const { lat, lon, lat1, lon1 } = useParams();
   const point1 = [parseFloat(lat), parseFloat(lon)];
-  const point2 = [parseFloat(lat1), parseFloat(lon1)];
+
+  // Use useMemo to prevent unnecessary recalculations of point2
+  const point2 = useMemo(() => [parseFloat(lat1), parseFloat(lon1)], [lat1, lon1]);
+
   const linePoints = [point1, point2];
   const [isSatellite, setIsSatellite] = useState(false);
+  const [distance, setDistance] = useState(0);
+
+  // Calculate the distance between the two points when the component mounts or params change
+  useEffect(() => {
+    const dist = haversineDistance(point1[0], point1[1], point2[0], point2[1]);
+    setDistance(dist);
+  }, [point1, point2]); // point1 and point2 are now stable due to useMemo
+
   const defaultTileLayer = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
   const satelliteTileLayer =
     "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
@@ -62,8 +89,8 @@ const MapView = () => {
           url={isSatellite ? satelliteTileLayer : defaultTileLayer}
           attribution={
             isSatellite
-              ? "© Esri & contributors | Source: Esri, DigitalGlobe, GeoEye"
-              : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              ? "©YeneDelivery & contributors | Source: YeneDelivery"
+              : '&copy; <a href="https://www.openstreetmap.org/copyright">YeneDelivery</a> '
           }
         />
         <Marker position={point1}>
@@ -160,6 +187,25 @@ const MapView = () => {
         >
           {isSatellite ? "Default View" : "Satellite View"}
         </button>
+      </div>
+
+      {/* Distance display at the top-right corner */}
+      <div
+        style={{
+          position: "absolute",
+          top: "20px",
+          right: "20px",
+          padding: "10px 20px",
+          backgroundColor: "#007bff",
+          color: "#fff",
+          borderRadius: "8px",
+          fontSize: "1rem",
+          zIndex: 1000,
+        }}
+      >
+        <p>
+          Distance: {distance.toFixed(3)} km
+        </p>
       </div>
     </div>
   );

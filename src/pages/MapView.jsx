@@ -34,7 +34,9 @@ const haversineDistance = (lat1, lon1, lat2, lon2) => {
 
 const MapView = () => {
   const { lat, lon, lat1, lon1 } = useParams();
-  const point1 = [parseFloat(lat), parseFloat(lon)];
+  
+  // Wrap point1 in useMemo to prevent recalculations on every render
+  const point1 = useMemo(() => [parseFloat(lat), parseFloat(lon)], [lat, lon]);
 
   // Use useMemo to prevent unnecessary recalculations of point2
   const point2 = useMemo(() => [parseFloat(lat1), parseFloat(lon1)], [lat1, lon1]);

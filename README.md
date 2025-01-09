@@ -15,20 +15,20 @@ YeneDelivery's order tracking system provides an intuitive interface for users, 
 ## Desktop Views
 
 ### 1. Desktop Grid View
-![Desktop Grid View](https://github.com/yared098/Yene-Track-Map/blob/main/photos/desktop 1.png)
+![Desktop Grid View](https://github.com/yared098/Yene-Track-Map/blob/main/photos/desktop1.png)
 
 ### 2. Desktop Satellite View
-![Desktop Satellite View](https://github.com/yared098/Yene-Track-Map/blob/main/photos/desktop 2.png)
+![Desktop Satellite View](https://github.com/yared098/Yene-Track-Map/blob/main/photos/desktop2.png)
 
 ---
 
 ## Mobile Views
 
 ### 3. Mobile Grid View
-![Mobile Grid View](https://github.com/yared098/Yene-Track-Map/blob/main/photos/mobile 1.png)
+![Mobile Grid View](https://github.com/yared098/Yene-Track-Map/blob/main/photos/mobile1.png)
 
 ### 4. Mobile Satellite View
-![Mobile Satellite View](https://github.com/yared098/Yene-Track-Map/blob/main/photos/mobile 2.png)
+![Mobile Satellite View](https://github.com/yared098/Yene-Track-Map/blob/main/photos/mobile2.png)
 
 ---
 

@@ -129,9 +129,9 @@ const MapView = () => {
           zIndex: 1000,
         }}
       >
-        {/* Zoom In Button */}
+        {/* Zoom Out Button */}
         <button
-          onClick={handleZoomIn}
+          onClick={handleZoomOut}
           style={{
             padding: "10px",
             backgroundColor: "green",
@@ -148,7 +148,7 @@ const MapView = () => {
             boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
           }}
         >
-          +
+          -
         </button>
 
        
@@ -172,9 +172,10 @@ const MapView = () => {
           {isSatellite ? "Grid View" : "Satellite View"}
         </button>
 
-         {/* Zoom Out Button */}
-         <button
-          onClick={handleZoomOut}
+         
+        {/* Zoom In Button */}
+        <button
+          onClick={handleZoomIn}
           style={{
             padding: "10px",
             backgroundColor: "green",
@@ -191,7 +192,7 @@ const MapView = () => {
             boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
           }}
         >
-          -
+          +
         </button>
       </div>
 

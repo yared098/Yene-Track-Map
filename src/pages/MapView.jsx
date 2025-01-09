@@ -110,6 +110,7 @@ const MapView = () => {
         display: "flex",
         flexDirection: "column",
       }}
+      
     >
       <h1 style={{ textAlign: "center", fontSize: "1.5rem", margin: "10px 0" }}>
         Yene Order Tracker

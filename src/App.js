@@ -6,10 +6,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route
-          path="/:lat/:lon/:lat1/:lon1"
-          element={<MapView />}
-        />
+        <Route path="/:lat/:lon/:lat1/:lon1" element={<MapView />} />
       </Routes>
     </Router>
   );

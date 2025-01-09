@@ -92,9 +92,10 @@ const MapView = () => {
           attribution={
             isSatellite
               ? "©YeneDelivery & contributors | Source: YeneDelivery"
-              : '&copy; <a href="https://www.openstreetmap.org/copyright">YeneDelivery</a> '
+              : 'YeneDelivery '
           }
         />
+        
         <Marker position={point1}>
           <Popup>
             <strong>Point 1</strong>
@@ -113,7 +114,7 @@ const MapView = () => {
             Longitude: {lon1}
           </Popup>
         </Marker>
-        <Polyline positions={linePoints} color="blue" />
+        <Polyline positions={linePoints} color="green" />
       </MapContainer>
 
       {/* Controls */}
@@ -133,10 +134,10 @@ const MapView = () => {
           onClick={handleZoomIn}
           style={{
             padding: "10px",
-            backgroundColor: "#007bff",
+            backgroundColor: "green",
             color: "#fff",
             border: "none",
-            borderRadius: "50%",
+            borderRadius: "5px",
             cursor: "pointer",
             fontSize: "1.2rem",
             width: "40px",
@@ -150,15 +151,36 @@ const MapView = () => {
           +
         </button>
 
-        {/* Zoom Out Button */}
+       
+
+        {/* Toggle View Button */}
         <button
+          onClick={() => setIsSatellite(!isSatellite)}
+          style={{
+            padding: "10px 15px",
+            backgroundColor: "green",
+            color: "#fff",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontSize: "0.7rem",
+            width:'150px',
+            fontWeight: "bold",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          {isSatellite ? "Grid View" : "Satellite View"}
+        </button>
+
+         {/* Zoom Out Button */}
+         <button
           onClick={handleZoomOut}
           style={{
             padding: "10px",
-            backgroundColor: "#007bff",
+            backgroundColor: "green",
             color: "#fff",
             border: "none",
-            borderRadius: "50%",
+            borderRadius: "5px",
             cursor: "pointer",
             fontSize: "1.2rem",
             width: "40px",
@@ -171,24 +193,6 @@ const MapView = () => {
         >
           -
         </button>
-
-        {/* Toggle View Button */}
-        <button
-          onClick={() => setIsSatellite(!isSatellite)}
-          style={{
-            padding: "10px 15px",
-            backgroundColor: "#007bff",
-            color: "#fff",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontSize: "1rem",
-            fontWeight: "bold",
-            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-          }}
-        >
-          {isSatellite ? "Default View" : "Satellite View"}
-        </button>
       </div>
 
       {/* Distance display at the top-right corner */}
@@ -198,7 +202,8 @@ const MapView = () => {
           top: "20px",
           right: "20px",
           padding: "10px 20px",
-          backgroundColor: "#007bff",
+          backgroundColor: "green",
+          // backgroundColor: "#007bff",
           color: "#fff",
           borderRadius: "8px",
           fontSize: "1rem",
